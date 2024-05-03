@@ -16,9 +16,11 @@ class MemoTestFactory extends Factory
      */
     public function definition(): array
     {
+        $image1 = fake()->imageUrl();
+        $image2 = fake()->imageUrl();
         return [
             'name' => 'Level ' . fake()->unique()->colorName(),
-            'images' => [fake()->imageUrl(), fake()->imageUrl(), fake()->imageUrl(), fake()->imageUrl()]
+            'images' => [$image1, $image2, $image1, $image2]
         ];
     }
 }
