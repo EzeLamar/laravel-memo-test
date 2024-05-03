@@ -21,4 +21,12 @@ class GameSession extends Model
     {
         return $this->belongsTo(MemoTest::class, 'memotest_id');
     }
+
+    public function getScore(): Int
+    {
+        if ($this->retries === 0) {
+            return 0;
+        }
+        return ($this->numberOfPairs / $this->retries) * 100;
+    }
 }

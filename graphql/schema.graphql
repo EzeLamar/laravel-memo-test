@@ -64,6 +64,7 @@ type GameSession {
   state: StateType!
   player: User! @belongsTo
   memoTest: MemoTest! @belongsTo
+  score: Int! @method(name: "getScore")
 }
 
 type MemoTest {
