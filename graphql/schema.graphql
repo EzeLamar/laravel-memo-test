@@ -2,15 +2,15 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 
 type Query {
     memoTests: [MemoTest!]! @all
-    memoTest(id: Int! @eq): MemoTest @find
-    
-    gameSession(id: Int! @eq): GameSession @find
+    memoTest(id: ID! @eq): MemoTest @find
+
+    gameSession(id: ID! @eq): GameSession @find
     
     user(
       id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"])
       email: String @eq @rules(apply: ["prohibits:id", "required_without:id", "email"])
       ): User @find
-      users(
+    users(
       "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
       name: String @where(operator: "like")
     ): [User!]! @paginate(defaultCount: 10)
@@ -70,4 +70,6 @@ type MemoTest {
   id: ID!
   name: String!
   images: [String!]!
+  gameSessions: [GameSession!] @hasMany
 }
+
